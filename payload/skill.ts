@@ -4,27 +4,7 @@ const backend: ISkill.Skill = {
   category: 'Back-end',
   items: [
     {
-      title: 'Node.js',
-      level: 3,
-    },
-    {
-      title: 'TypeScript',
-      level: 3,
-    },
-    {
-      title: 'Express.js',
-      level: 3,
-    },
-    {
-      title: 'AWS',
-      level: 3,
-    },
-    {
-      title: 'nginx',
-      level: 3,
-    },
-    {
-      title: 'Apache',
+      title: 'Java',
       level: 2,
     },
     {
@@ -32,17 +12,57 @@ const backend: ISkill.Skill = {
       level: 2,
     },
     {
-      title: 'Java',
+      title: 'Apache',
+      level: 2,
+    },
+    {
+      title: 'Nginx',
       level: 1,
     },
     {
-      title: 'Python',
+      title: 'Node.js',
       level: 1,
     },
     {
-      title: 'C/C++',
+      title: 'ElasticSearch',
       level: 1,
     },
+    {
+      title: 'RabbitMQ',
+      level: 1,
+    },
+  ],
+};
+
+const cloud: ISkill.Skill = {
+  category: 'Cloud',
+  items: [
+    {
+      title: 'AWS (EC2, S3, SES)',
+      level: 2,
+    },
+    {
+      title: 'GCP (Stackdriver)',
+      level: 2,
+    }
+  ]
+}
+
+const framework: ISkill.Skill = {
+  category: 'Framework',
+  items: [
+    {
+      title: 'Spring',
+      level: 2,
+    },
+    {
+      title: 'Codeigniter',
+      level: 2,
+    },
+    {
+      title: 'Netty',
+      level: 1,
+    }
   ],
 };
 
@@ -50,16 +70,12 @@ const database: ISkill.Skill = {
   category: 'Database',
   items: [
     {
-      title: 'Redis',
-      level: 3,
-    },
-    {
       title: 'MySQL',
       level: 2,
     },
     {
-      title: 'MongoDB',
-      level: 2,
+      title: 'Memcached',
+      level: 1,
     },
     {
       title: 'Oracle',
@@ -72,16 +88,24 @@ const frontend: ISkill.Skill = {
   category: 'Front-end',
   items: [
     {
-      title: 'Next.js',
-      level: 2,
-    },
-    {
-      title: 'React.js',
-      level: 2,
-    },
-    {
       title: 'javascript',
       level: 2,
+    },
+    {
+      title: 'jQuery',
+      level: 2,
+    },
+    {
+      title: 'typeScript',
+      level: 1,
+    },
+    {
+      title: 'Nuxt.js',
+      level: 1,
+    },
+    {
+      title: 'Vue.js',
+      level: 1,
     },
     {
       title: 'HTML/CSS',
@@ -100,10 +124,10 @@ const etc: ISkill.Skill = {
       title: 'Vim',
     },
     {
-      title: 'Security',
+      title: 'Algorithm',
     },
     {
-      title: 'VS Code',
+      title: 'IntelliJ IDEA',
     },
     {
       title: 'Jira',
@@ -112,30 +136,33 @@ const etc: ISkill.Skill = {
       title: 'Confluence',
     },
     {
-      title: 'Bitbucket',
+      title: 'Selenium',
     },
     {
       title: 'DevOps',
     },
     {
+      title: 'nGrinder',
+    },
+    {
       title: 'Git / Github',
     },
     {
-      title: 'Agile',
+      title: 'Docker',
     },
     {
-      title: 'Socket.io',
+      title: 'Buddy (CI / CD)',
     },
     {
-      title: 'Jenkins',
+      title: 'Fluentd',
     },
   ],
 };
 
 const skill: ISkill.Payload = {
   disable: false,
-  skills: [backend, database, frontend, etc],
-  tooltip: '1: 기초 수준\n2: 취미 개발 수준\n3: Production 개발 가능 수준',
+  skills: [backend, cloud, framework, database, frontend, etc],
+  tooltip: '1: 기초 수준\n2: 중급 수준\n3: 고급 수준',
 };
 
 export default skill;

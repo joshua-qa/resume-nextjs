@@ -1,138 +1,155 @@
 import { IProject } from '../component/project/IProject';
 
 const WHERE = {
-  YA: '야놀자 (Yanolja)',
-  PL: '플레이팅 (Plating)',
-  EC: '이큐브랩 (Ecube Labs)',
-  KY: '키니 (KYNY)',
+  SO: '쏘카 (SOCAR)',
+  FT: '푸드테크 (Foodtech)',
+  NES: 'NHN Ent.Service',
 };
 
-const yaNol2020: IProject.Item = {
-  title: '야놀자 2020 놀력 포인트 지급 이벤트 런칭',
-  startedAt: '2019-10',
-  endedAt: '2020-01',
-  where: WHERE.YA,
+const socarAccident: IProject.Item = {
+  title: '쏘카 사고관리 시스템 & 공업사 시스템 개편',
+  startedAt: '2020-02',
+  where: WHERE.SO,
   descriptions: [
-    { content: '1년간 24시간 진행되는 무중단 이벤트 구현' },
+    { content: '기존 PHP 레거시 기반의 사고관리 시스템을 Kotlin + Spring Boot + gRPC 기반의 MSA로 개편' },
+    { content: '기획 리뷰 및 요구사항 구체화, 개발 방향성 협의' },
+    { content: '사고차량조치 페이지 개발 및 공업사 시스템 모바일웹 개발 (현재 진행중)' },
+  ],
+};
+
+const socarNotification: IProject.Item = {
+  title: 'Socar-Notification 서비스 (가제) 개발',
+  startedAt: '2019-09',
+  endedAt: '2019-12',
+  where: WHERE.SO,
+  descriptions: [
+    { content: 'SMS, 알림톡, Mail 발송 서비스를 통합하여 관리하기 위한 MSA Service 개발' },
+    { content: '각각의 Product 서비스에서 따로 구현하여 사용하고 있던 발송 로직을 MSA로 분리' },
+    { content: 'Spring Cloud Zuul을 사용하여 API Gateway 구현' },
+    { content: '담당 업무 : 메일 서비스 구현 및 API Gateway의 응답속도 최적화, GCP Stackdriver를 활용한 로그 수집 구축' },
+  ],
+};
+
+const socarMonitoring: IProject.Item = {
+  title: '쏘카 모니터링 TF',
+  startedAt: '2019-01',
+  endedAt: '2019-06',
+  where: WHERE.SO,
+  descriptions: [
+    { content: '전체 서버의 로그 통합 수집 환경 구축' },
     {
-      content:
-        '비즈니스 요구사항 구체화 및 제약 사항 파악, 개발 방향성 수립, 포인트 지급 알고리즘 및 API 구현',
+      content: 'Fluentd + GCP Stackdriver를 활용한 로그 수집 환경 구축',
+      weight: 'MEDIUM',
+      descriptions: [
+        { content: 'Fluentd와 GCP의 Stackdriver를 활용하여, 한 곳의 페이지에서 모든 서버의 로그들을 조회하고 쉽게 검색할 수 있도록 구축' },
+        { content: '각 서버의 로깅 실태를 점검하고 미흡한 서버들이 모니터링에 필요한 로그를 남길 수 있도록 작업' },
+        { content: '각 서버에 직접 연결하여 로그를 확인해야했던 기존의 환경을 전면 개선하는데 기여함 (TF 메인 포지션)' },
+      ],
     },
     {
-      content: 'Batch Worker 미 이벤트 지표 모니터링 도구, 비상용 관리자 CLI 기능 구현',
-    },
-    { content: '2020년 1월 기준 DAU n% 향상 및 평균 구매 건수 n건 향상' },
+      content: '모니터링을 위한 Metric 설정 및 교육용 매뉴얼 작성',
+    }
+  ],
+};
+
+const socarOperation: IProject.Item = {
+  title: '쏘카 레거시 서비스 & 백오피스 개발 및 유지보수, 각종 운영',
+  startedAt: '2019-01',
+  where: WHERE.SO,
+  descriptions: [
+    { content: '개발 및 운영, 약간의 DevOps 업무' },
     {
-      content: "(관련기사) 야놀자 탁상용 달력 '2020 놀력' 출시",
-      href: 'http://topclass.chosun.com/daily/view.asp?idx=267&Newsnumb=201911267',
+      content: '법인 비즈니스 신규 상품 "리저브" 런칭',
+      weight: 'MEDIUM',
+      descriptions: [
+        { content: '기업용 전용차량 카셰어링 서비스 상품의 백오피스 관리 페이지 개발' },
+        { content: '법인 신규 상품 추가로 신규 매출 발생에 기여' },
+      ],
+    },
+    {
+      content: '쿠폰북 추가 정책 기능 개발 작업',
+      weight: 'MEDIUM',
+      descriptions: [
+        { content: '기존에 브레이즈(앱보이)로 제한적으로 처리하던 로직을 백오피스에서 간단한 설정으로 사용할 수 있도록 개발' },
+        { content: '여름 성수기 마케팅에서 적극적으로 사용되어 매출 증가에 기여 (배포 이후 등록된 쿠폰북 항목 중 약 15% 정도의 항목에 추가정책 기능 적용)' },
+      ],
+    },
+    {
+      content: '압수수색영장 관련 추출 업무 자동화 및 매뉴얼 작성',
+      weight: 'MEDIUM',
+      descriptions: [
+        { content: 'Shell Script를 활용하여 기존 2~3시간 소요되던 위치정보 관련 로그 추출 업무를 20분 미만으로 단축' },
+      ],
+    },
+    {
+      content: 'Sentry를 활용한 Major / Minor 오류 해결',
+      weight: 'MEDIUM',
+      descriptions: [
+        { content: 'Sentry에 등록되어 있던 100여건 이상의 쏘카 백오피스 이슈를 1년간 지속적으로 조치 작업' },
+        { content: 'Slack 로그 채널의 오류 메시지 일일 발생건수 50~150건 -> 0~5건으로 감소 효과를 거두는데 기여' },
+      ],
+    },
+    {
+      content: '슬로우 쿼리 제거 및 키워드 검색 기능 강화',
+      weight: 'MEDIUM',
+      descriptions: [
+        { content: 'ElasticSearch를 활용하여 성능 저하를 유발하는 일부 키워드 Full-Text 검색 기능 최적화' },
+        { content: '백오피스 레거시 및 배치 프로젝트의 슬로우 쿼리 40건 이상 개선 및 코드 개선' },
+      ],
+    },
+    {
+      content: '가비아 -> AWS 인프라 이전작업 및 ISMS-P 인증 작업',
+      weight: 'MEDIUM',
+      descriptions: [
+        { content: '기존 가비아 IDC에서 운영되던 백오피스 인프라 환경을 AWS로 이전' },
+        { content: 'ISMS-P 인증 획득을 위한 백오피스 보안 강화 작업 담당' },
+        { content: '쏘카의 ISMS-P 인증 획득에 기여 (ISMS-P-KISA-2019-011)' },
+      ],
     },
   ],
 };
 
-const yaRedis: IProject.Item = {
-  title: 'Legacy Redis 청산 및 구조 개편',
-  startedAt: '2019-07',
-  endedAt: '2019-10',
-  where: WHERE.YA,
+const foodtech: IProject.Item = {
+  title: '푸드테크 API 서버 개발 및 운영',
+  startedAt: '2018-01',
+  endedAt: '2018-12',
+  where: WHERE.FT,
   descriptions: [
-    { content: '용도와 목적 없이 사용되고 있던 Redis 전체 정리' },
-    { content: '기존 n개의 Client 를 용도/목적에 맞게 m개의 Client로 분리' },
-    { content: 'Storage 부족 현상 해소로 서비스 운영 위협 감소' },
-    { content: 'Product 개발시 Redis 사용과 ElastiCache 운영에 대한 정책 수립' },
-  ],
-};
-
-const yaJoyAPI: IProject.Item = {
-  title: '야놀자 Mashup API 개발 및 유지보수',
-  startedAt: '2018-02',
-  where: WHERE.YA,
-  descriptions: [
-    { content: 'Aggregation Layer의 Mashup API 개발 및 운영' },
     {
-      content: '2019년 숙소 리스트 신규 광고 상품 추가',
+      content: '배달대행 중개서버 (푸드테크 POS -> 배달대행 업체 서버)',
       weight: 'MEDIUM',
       descriptions: [
-        { content: '신규 광고 상품 추가로 신규 매출 발생에 기여' },
-        { content: 'TBD' },
-      ],
-    },
-    {
-      content: '2019년 쇼킹특가/핫딜 서비스 런칭',
-      weight: 'MEDIUM',
-      descriptions: [
-        { content: '신규 할인 상품 추가로 추가 매출 발생 및 사용자 구매율 향상' },
-        { content: 'TBD' },
-      ],
-    },
-    {
-      content: '2019년 해외숙소 예약 서비스 런칭',
-      weight: 'MEDIUM',
-      descriptions: [
-        { content: '해외 OTA 연동으로 해외 숙소 예약 가능하도록 런칭' },
-        { content: 'TBD' },
-      ],
-    },
-    {
-      content: '2018년 레저 서비스 런칭',
-      weight: 'MEDIUM',
-      descriptions: [
-        { content: '레저 상품 데이터 연동으로 레저 서비스 예약 기능 런칭' },
+        { content: '푸드테크 POS에 사용되는 배달대행 접수 기능을 위한 중개서버 개발 및 운영' },
         {
-          content: '(참고자료) 야놀자가 레저를 판매하려고 할 때 벌어지는 일 (by 송요창님)',
-          href:
-            'https://speakerdeck.com/totuworld/yanoljaga-rejeoreul-panmaeharyeogo-hal-ddae-beoleojineun-il',
+          content: '기존 Netty + Spring 4 + HttpClient로 되어있는 서버를 지속적으로 개선',
         },
-        { content: 'TBD' },
-      ],
-    },
-    {
-      content: '2018년 국내 숙소 상세 개편 및 유지보수',
-      weight: 'MEDIUM',
-      descriptions: [
-        { content: '2018년 상반기에 국내 숙소 상세(PDP) 리팩토링 및 서비스 개선 완료' },
-        { content: 'Redis 활용한 Response Cache 도입 및 리팩토링으로 기존 대비 Latency 90% 감소' },
-        { content: '사용자 경험 및 매출 향상 위한 추가 비즈니스 요구사항 개발 및 구조 개선' },
-        { content: 'TBD' },
-      ],
-    },
-    {
-      content: 'AWS 인프라 유지보수 및 ISMS 인증 작업',
-      weight: 'MEDIUM',
-      descriptions: [
-        { content: '주기적으로 변경 및 강화되는 인프라 정책을 팀 프로젝트에 적용' },
-        { content: '팀 내 AWS 사용 구조 개선과 비용 최적화' },
-        { content: 'ISMS 인증 획득을 위한 인프라 보안 강화 작업 담당' },
-      ],
-    },
-  ],
-};
-
-const plBackend: IProject.Item = {
-  title: '플레이팅 백엔드/프론트엔드 서비스 개발',
-  startedAt: '2016-10',
-  endedAt: '2017-11',
-  where: WHERE.PL,
-  descriptions: [
-    {
-      content: 'API Server v1 / v2',
-      weight: 'MEDIUM',
-      descriptions: [
-        { content: '플레이팅 서비스에 사용되는 API 서버 개발' },
         {
-          content: '기존 PHP로 작성된 v1 API를 Node.js와 Express.js로 이전 및 기능 추가, 코드 개선',
+          content: '소켓통신으로만 요청을 받을 수 있었던 서버를 HTTP 요청도 받을 수 있도록 개선',
         },
-        { content: 'API v2 부터 TDD, ORM 등 도입' },
-        { content: 'AWS EC2, pm2, nginx를 서버 인프라로 사용' },
-        { content: 'AWS RDS의 MySQL를 데이터베이스로 사용' },
+        {
+          content: '푸드테크 신규 프로젝트였던 주문접수앱에서 별도의 API 서버 개발 없이 중개서버의 기능을 사용할 수 있도록 하는데 기여함',
+        },
       ],
     },
     {
-      content: 'Socket Server',
+      content: '배달대행 중개서버 연동 개발',
       weight: 'MEDIUM',
       descriptions: [
-        { content: '주문 관련 백오피스에 사용되는 소켓 서버 개발' },
-        { content: 'Node.js와 Socket.io, Express.js를 사용하여 개발' },
-        { content: 'AWS EC2 내의 MongoDB를 데이터베이스로 사용' },
+        { content: '푸드테크 POS에서 B2B 제휴 업체에 배달대행 접수를 할 수 있도록 연동 개발' },
+        {
+          content: '가맹점이 바로고, 메쉬코리아(부릉), 달리고, 생각대로, 비욘드아이앤씨, 만나서비스, 제트콜 등 유명 배달대행 업체에 배달 요청을 접수할 수 있도록 업체간 API 연동 작업',
+        },
+        {
+          content: '다양한 B2B 개발 / 커뮤니케이션 경험을 쌓을 수 있었음',
+        },
+      ],
+    },
+    {
+      content: '배달대행 실시간 현황 전달 서버 (배달대행 업체 -> 푸드테크 POS)',
+      weight: 'MEDIUM',
+      descriptions: [
+        { content: 'Servlet 기반의 API 서버 운영' },
+        { content: '기존 Java6 기반의 레거시 코드를 Java8 베이스로 개편하여, 신규 제휴 업체 연동개발에 소요되는 시간을 40% 단축' },
       ],
     },
     {
@@ -140,81 +157,28 @@ const plBackend: IProject.Item = {
       weight: 'MEDIUM',
       descriptions: [
         {
-          content: 'Admin 서비스 개발',
+          content: '사내 API서버를 위한 주소정제 API서버 개발',
           descriptions: [
-            { content: 'React.js 등을 사용하여 내부 백오피스 툴 개발' },
-            { content: 'ERP, 라이더 앱, 서버 모니터링 등 개발' },
-            { content: 'Socket Client 통신, 비동기 HTTP 통신 등을 사용' },
+            { content: 'POS 프로그램에서 사내 API 서비스로 보내는 지번/도로명 주소를 네이버/카카오/행자부 API를 활용하여 정제할 수 있도록 서버 개발' },
+            { content: 'Java + Spring Boot + MySQL + Mybatis 사용' },
           ],
         },
         {
-          content: 'ESC/POS Printer Navtive 프로그램 개발',
+          content: '사내 서비스를 위한 050 안심번호 매핑 / 해지 중개서버 개발',
           descriptions: [
-            { content: '플레이팅 자체 주문 확인지와 영수증 출력용 프로그램' },
-            { content: 'Node.js와 Electron.js, node-escpos를 사용하여 개발' },
-            {
-              content: '오픈소스 기여:',
-              postHref: 'https://github.com/song940/node-escpos',
-            },
+            { content: '외부 050 안심번호 매핑서버에 고객의 전화번호를 매핑하고 해지할 수 있도록 중개 API서버 개발' },
+            { content: 'Reactor-Netty를 사용하여 간결하게 비동기 소켓통신 서버를 구현함' },
           ],
         },
-        { content: '백엔드 Batch 서비스 개발' },
-        { content: 'Telegram Bot API, CloudWatch Event 사용한 지표 모니터링 서비스 개발' },
-        { content: 'Microservice 가격 계산 서버 개발' },
-        { content: 'AWS S3, CloudFront 등을 사용한 자체 CDN 구축' },
-        { content: 'React Native 사용한 앱 서비스 유지보수' },
+        { content: 'jython + nGrinder를 활용한 사내 서비스 성능테스트 코드 작성 및 성능 부하테스트 진행' },
       ],
-    },
-  ],
-};
-
-const plDelivery: IProject.Item = {
-  title: '플레이팅 새벽 배송 서비스 런칭',
-  startedAt: '2017-03',
-  endedAt: '2017-05',
-  where: WHERE.PL,
-  descriptions: [
-    { content: '새로운 주문 형태인 새벽 배송 시스템 개발' },
-    { content: '기존 API 서버 관리 미흡으로 기능 추가 불가능 상황 도래' },
-    { content: '새벽 주문 전용 Node.js API 서버를 구축하고 기능 개발' },
-    { content: 'API v2 프로젝트의 코드 베이스가 됨.' },
-    { content: '개발 시 확장성과 모듈화 고려의 중요성을 깨닫게 됨' },
-  ],
-};
-
-const ecBackend: IProject.Item = {
-  title: '클릭시티네트웍스 백엔드 개발',
-  startedAt: '2015-07',
-  endedAt: '2016-02',
-  where: WHERE.EC,
-  descriptions: [
-    { content: '도시 쓰레기량 관제 모니터링 툴 개발' },
-    { content: 'Beta는 PHP, v1 은 Node.js, Express.js로 개발' },
-    { content: 'v1 개발 당시 사내 최초로 AWS를 도입함' },
-    { content: '백엔드 개발자로서 Out of Memory, 침해 사고, 성능 튜닝 등 다양한 서버 문제를 경험' },
-  ],
-};
-
-const kyToto: IProject.Item = {
-  title: '스포츠 토토 승률 계산 서비스 개발',
-  startedAt: '2014-09',
-  endedAt: '2015-03',
-  where: WHERE.KY,
-  descriptions: [
-    { content: '통계 알고리즘을 사용한 해외 축구 스포츠 토토 승률 예상 서비스' },
-    { content: 'Java Servlet을 사용하여 통계 알고리즘을 코드화' },
-    { content: 'Linux와 Apache 등을 사용하여 서버 인프라 구축' },
-    { content: 'Wordpress, PHP, MySQL 등을 사용하여 서비스 개발' },
-    {
-      content:
-        '비즈니스 멘토링을 통해 BM 분석, 사업 전략 수립, 개발 방향성 수립 및 설계, 다른 직군과의 협업 등을 경험',
     },
   ],
 };
 
 const project: IProject.Payload = {
   disable: false,
-  list: [yaNol2020, yaRedis, yaJoyAPI, plBackend, plDelivery, ecBackend, kyToto],
+  list: [socarAccident, socarNotification, socarMonitoring, socarOperation, foodtech],
 };
 
 export default project;

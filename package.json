@@ -1,12 +1,12 @@
 {
   "name": "resume-nextjs",
-  "lastestUpdatedAt": "2020-04-12",
+  "lastestUpdatedAt": "2020-04-14",
   "version": "1.0.2",
   "description": "Static HTML based RESUME made with next.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "DEBUG=yosume:* next",
+    "dev": "next",
     "build": "next build",
     "prebuild": "npm install && npm run lint",
     "start": "next start",
